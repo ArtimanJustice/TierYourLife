@@ -12,5 +12,4 @@ class StringProviderStore @Inject constructor(
     inline operator fun <reified T : StringProvider> invoke(): T {
         return stringProviders[T::class.java] as T
     }
-
 }

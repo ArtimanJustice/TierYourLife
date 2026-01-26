@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     implementation(libs.javax.inject)
-    testImplementation(libs.junit)
+    api(libs.coroutines.core)
 }
