@@ -12,8 +12,6 @@ import org.gradle.kotlin.dsl.getByType
 @Suppress("unused")
 class ComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        target.pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
-
         val libs = target.extensions.getByType<VersionCatalogsExtension>().named("libs")
         val composeCompilerVersion = libs.findVersion("androidxComposeCompiler").get().toString()
         val composeBom = libs.findLibrary("androidx-compose-bom").get()
