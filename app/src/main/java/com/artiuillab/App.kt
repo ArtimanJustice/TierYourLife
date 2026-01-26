@@ -1,6 +1,6 @@
 package com.artiuillab
 
-import com.sinyee.core_android.AbstractApplication
+import com.artiuillab.android.AbstractApplication
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

@@ -25,5 +25,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "TierYourLife"
 include(":app")
-include(":core-essentials")
-include(":core-android")
+include(":core:android")
+include(":core:essentials")
