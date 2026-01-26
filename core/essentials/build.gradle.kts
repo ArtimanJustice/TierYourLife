@@ -4,5 +4,6 @@ plugins {
 }
 
 dependencies {
-
+    implementation(libs.javax.inject)
+    testImplementation(libs.junit)
 }
