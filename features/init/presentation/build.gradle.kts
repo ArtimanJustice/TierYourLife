@@ -16,6 +16,10 @@ android {
     namespace = "com.artiuillab.features.init.presentation"
 }
 
+composeCompiler {
+    reportsDestination = layout.buildDirectory.dir("reports")
+}
+
 dependencies {
     implementation(project(":features:init:domain"))
     implementation(project(":core:essentials"))
@@ -23,6 +27,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.activity.compose)

@@ -34,12 +34,11 @@ class InitViewModel @Inject constructor(
             SharingStarted.WhileSubscribed(1000),
             Container.Loading,
         )
-
-    data class State(
-        val keyFeature: KeyFeature,
-    )
 }
 
+data class State(
+    val keyFeature: KeyFeature,
+)
 //fun <T> ViewModel.load(
 //    loader: suspend () -> T,
 //): StateFlow<Container<T>> {

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.13.1"
+composeStableMarker = "1.0.7"
 kotlin = "2.2.21"
 jetbrainsKotlinJvm = "2.2.21"
 ksp = "2.3.1"
@@ -21,6 +22,7 @@ coroutines = "1.10.2"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+compose-stable-marker = { module = "com.github.skydoves:compose-stable-marker", version.ref = "composeStableMarker" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -59,3 +61,5 @@ convention-kotlin = { id = "com.artiuillab.convention.kotlin" }
 convention-android = { id = "com.artiuillab.convention.android" }
 convention-compose = { id = "com.artiuillab.convention.compose" }
 convention-build-types = { id = "com.artiuillab.convention.android.buildtypes" }
+convention-domain = { id = "com.artiuillab.convention.domain" }
+

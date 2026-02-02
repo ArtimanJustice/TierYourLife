@@ -33,5 +33,9 @@ gradlePlugin {
             id = "com.artiuillab.convention.android.buildtypes"
             implementationClass = "com.artiuillab.buildlogic.AndroidBuildTypesConventionPlugin"
         }
+        create("domainConvention") {
+            id = "com.artiuillab.convention.domain"
+            implementationClass = "com.artiuillab.buildlogic.DomainConventionPlugin"
+        }
     }
 }

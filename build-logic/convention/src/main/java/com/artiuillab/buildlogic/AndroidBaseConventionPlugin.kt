@@ -13,22 +13,30 @@ class AndroidBaseConventionPlugin : Plugin<Project> {
         target.pluginManager.withPlugin("com.android.application") {
             target.extensions.configure<ApplicationExtension> {
                 compileSdk = 36
-                defaultConfig { minSdk = 26 }
+                defaultConfig {
+                    minSdk = 26
+                    targetSdk = 36
+                }
                 compileOptions {
                     sourceCompatibility = JavaVersion.VERSION_21
                     targetCompatibility = JavaVersion.VERSION_21
                 }
             }
         }
+
         target.pluginManager.withPlugin("com.android.library") {
             target.extensions.configure<LibraryExtension> {
                 compileSdk = 36
-                defaultConfig { minSdk = 26 }
+                defaultConfig {
+                    minSdk = 26
+                    targetSdk = 36
+                }
                 compileOptions {
                     sourceCompatibility = JavaVersion.VERSION_21
                     targetCompatibility = JavaVersion.VERSION_21
                 }
             }
         }
+
     }
 }
