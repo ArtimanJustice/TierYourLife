@@ -23,6 +23,7 @@ composeCompiler {
 dependencies {
     implementation(project(":features:init:domain"))
     implementation(project(":core:essentials"))
+    implementation(project(":core:theme"))
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

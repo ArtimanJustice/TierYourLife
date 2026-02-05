@@ -2,53 +2,74 @@ package com.artiuillab.features.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.artiuillab.essentials.Container
-import com.artiuillab.essentials.exceptions.base.AbstractAppException
-import com.artiuillab.essentials.exceptions.mapper.ExceptionToMessageMapper
-import com.artiuillab.features.init.domain.entities.KeyFeature
+import com.artiuillab.essentials.exceptions.handler.ExceptionHandler
+import com.artiuillab.features.init.domain.GetKeyFeatureUseCase
+import com.artiuillab.features.init.domain.IsAuthorizedUseCase
+import com.artiuillab.features.init.domain.KeyFeature
+import com.elveum.container.Container
+import com.elveum.container.map
+import com.elveum.container.pendingContainer
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.artiuillab.essentials.containerMap
-
-interface GetKeyFeatureUseCase {
-     operator fun invoke(): Flow<Container<KeyFeature>>
-}
 
 @HiltViewModel
 class InitViewModel @Inject constructor(
-    private val getKeyFeatureUseCase: GetKeyFeatureUseCase,
-    private val exceptionToMessageMapper: ExceptionToMessageMapper,
+    getKeyFeatureUseCase: GetKeyFeatureUseCase,
+    private val isAuthorizedUseCase: IsAuthorizedUseCase,
+    private val exceptionHandler: ExceptionHandler,
 ) : ViewModel() {
 
-    val stateFlow: StateFlow<Container<State>> = getKeyFeatureUseCase
-        .invoke()
-        .containerMap { keyFeature ->
-            State(keyFeature)
-        }.stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(1000),
-            Container.Loading,
-        )
-}
+    private val vmStateFlow = MutableStateFlow(ViewModelState())
 
-data class State(
-    val keyFeature: KeyFeature,
-)
-//fun <T> ViewModel.load(
-//    loader: suspend () -> T,
-//): StateFlow<Container<T>> {
-//    return flow {
-//        emit(Container.Loading)
-//        try {
-//            val data = loader()
-//            emit(Container.Success(data))
-//        } catch (e: Exception) {
-//            emit(Container.Error(e))
-//        }
-//    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), Container.Loading)
-//}
+    val stateFlow: StateFlow<Container<State>> = combine(
+        getKeyFeatureUseCase.invoke(),
+        vmStateFlow,
+    ) { container, vmState ->
+        container.map { keyFeature ->
+            State(keyFeature, vmState.isCheckAuthInProgress)
+        }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), pendingContainer())
+
+    fun letsGo() {
+        viewModelScope.launch {
+            try {
+                showProgress()
+                val isAuthorized = isAuthorizedUseCase.invoke()
+                if (isAuthorized) {
+                    // todo: launch main screen
+                } else {
+                    // todo: launch sign-in screen
+                }
+            } catch (e: Exception) {
+                ensureActive()
+                hideProgress()
+                exceptionHandler.handleException(e)
+            }
+        }
+    }
+
+    private fun showProgress() {
+        vmStateFlow.update { it.copy(isCheckAuthInProgress = true) }
+    }
+
+    private fun hideProgress() {
+        vmStateFlow.update { it.copy(isCheckAuthInProgress = false) }
+    }
+
+    data class State(
+        val keyFeature: KeyFeature,
+        val isCheckAuthInProgress: Boolean,
+    )
+
+    private data class ViewModelState(
+        val isCheckAuthInProgress: Boolean = false
+    )
+}

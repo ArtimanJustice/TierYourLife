@@ -22,6 +22,8 @@ android {
 
 dependencies {
     implementation(project(":core:android"))
+    implementation(project(":features:init:presentation"))
+
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

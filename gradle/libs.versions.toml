@@ -19,6 +19,7 @@ espressoCore = "3.7.0"
 hilt = "2.57.2"
 hiltNavigationCompose = "1.2.0"
 coroutines = "1.10.2"
+container = "2.0.0-beta01"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -47,6 +48,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+container = { module = "com.elveum:container", version.ref = "container" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
