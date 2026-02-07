@@ -6,6 +6,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
+@Suppress("unused")
 class DomainConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         plugins.apply("org.jetbrains.kotlin.jvm")

@@ -28,11 +28,16 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/android" />
             <option value="$PROJECT_DIR$/core/essentials" />
+            <option value="$PROJECT_DIR$/core/navigation-dsl" />
             <option value="$PROJECT_DIR$/core/theme" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/init" />
             <option value="$PROJECT_DIR$/features/init/domain" />
             <option value="$PROJECT_DIR$/features/init/presentation" />
+            <option value="$PROJECT_DIR$/features/signin" />
+            <option value="$PROJECT_DIR$/features/signin/domain" />
+            <option value="$PROJECT_DIR$/features/signin/presentation" />
+            <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>
       </GradleProjectSettings>

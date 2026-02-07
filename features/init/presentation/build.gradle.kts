@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":features:init:domain"))
     implementation(project(":core:essentials"))
     implementation(project(":core:theme"))
+    implementation(project(":core:navigation-dsl"))
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

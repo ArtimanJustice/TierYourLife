@@ -1,29 +1,31 @@
 [versions]
-agp = "8.13.1"
+agp = "8.11.0"
 composeStableMarker = "1.0.7"
-kotlin = "2.2.21"
-jetbrainsKotlinJvm = "2.2.21"
-ksp = "2.3.1"
-coreKtx = "1.17.0"
-lifecycleRuntimeKtx = "2.9.4"
-activityCompose = "1.11.0"
+kotlin = "2.2.0"
+jetbrainsKotlinJvm = "2.2.0"
+ksp = "2.2.0-2.0.2"
+coreKtx = "1.16.0"
+lifecycleRuntimeKtx = "2.9.1"
+activityCompose = "1.10.1"
 appcompat = "1.7.1"
-androidxComposeBom = "2025.11.00"
-navigationCompose = "2.9.4"
+androidxComposeBom = "2025.06.01"
+navigationCompose = "2.9.1"
 androidxComposeCompiler = "1.5.10"
-material = "1.13.0"
+material = "1.12.0"
 timber = "5.0.1"
 junit = "4.13.2"
-junitVersion = "1.3.0"
-espressoCore = "3.7.0"
-hilt = "2.57.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+hilt = "2.56.2"
 hiltNavigationCompose = "1.2.0"
 coroutines = "1.10.2"
 container = "2.0.0-beta01"
 kotlinxSerialization = "1.9.0"
+effects = "2.0.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 compose-stable-marker = { module = "com.github.skydoves:compose-stable-marker", version.ref = "composeStableMarker" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,6 +52,9 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 container = { module = "com.elveum:container", version.ref = "container" }
+effects-hilt-compose = { module = "com.uandcode:effects2-hilt-compose", version.ref = "effects" }
+effects-hilt-compiler = { module = "com.uandcode:effects2-hilt-compiler", version.ref = "effects" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

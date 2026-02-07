@@ -16,13 +16,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.artiuillab.features.signin.SignInViewModel.State
 import com.artiuillab.theme.components.ContainerView
 import com.elveum.container.Container
+import com.artiuillab.navigation.dsl.ScreenScope
+import com.artiuillab.navigation.dsl.ScreenToolbar
 
-@Composable
-fun SignInScreen() {
-    val viewModel: SignInViewModel = hiltViewModel()
-    val container: Container<State> by viewModel.stateFlow.collectAsState()
-    ContainerView(container) { state ->
-        SignInContent(state)
+fun ScreenScope.signInScreen() {
+    toolbar = ScreenToolbar.Default(
+        title = context.getString(R.string.sign_in)
+    )
+    content {
+        val viewModel: SignInViewModel = hiltViewModel()
+        val container: Container<State> by viewModel.stateFlow.collectAsState()
+        ContainerView(container) { state ->
+            SignInContent(state)
+        }
     }
 }
 

@@ -1,30 +1,25 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose.compiler)
-
     alias(libs.plugins.convention.android)
     alias(libs.plugins.convention.kotlin)
+
     alias(libs.plugins.convention.compose)
+    alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
-
-
 android {
-    namespace = "com.artiuillab.features.signin"
+    namespace = "com.artiuillab.navigation.dsl"
+    buildFeatures {
+        compose = true
+    }
 }
 
-composeCompiler {
-    reportsDestination = layout.buildDirectory.dir("reports")
-}
 
 dependencies {
-    implementation(project(":features:signin:domain"))
-    implementation(project(":core:essentials"))
-    implementation(project(":core:theme"))
-    implementation(project(":core:navigation-dsl"))
+    implementation(libs.timber)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

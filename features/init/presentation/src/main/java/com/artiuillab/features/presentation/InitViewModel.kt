@@ -19,18 +19,17 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.invoke
 
 @HiltViewModel
 class InitViewModel @Inject constructor(
     getKeyFeatureUseCase: GetKeyFeatureUseCase,
     private val isAuthorizedUseCase: IsAuthorizedUseCase,
+    private val router: InitRouter,
     private val exceptionHandler: ExceptionHandler,
 ) : ViewModel() {
 
     private val vmStateFlow = MutableStateFlow(ViewModelState())
-
-    private val _effectsFlow = MutableStateFlow(Effects())
-    val effectsFlow: StateFlow<Effects> = _effectsFlow
 
     val stateFlow: StateFlow<Container<State>> = combine(
         getKeyFeatureUseCase.invoke(),
@@ -49,7 +48,7 @@ class InitViewModel @Inject constructor(
                 if (isAuthorized) {
                     // todo: launch main screen
                 } else {
-                    _effectsFlow.update { it.copy(launchSignInScreen = Unit) }
+                    router.launchSignIn()
                 }
             } catch (e: Exception) {
                 ensureActive()
@@ -57,10 +56,6 @@ class InitViewModel @Inject constructor(
                 exceptionHandler.handleException(e)
             }
         }
-    }
-
-    fun onLaunchSignInScreen() {
-        _effectsFlow.update { it.copy(launchSignInScreen = null) }
     }
 
     private fun showProgress() {
@@ -80,7 +75,4 @@ class InitViewModel @Inject constructor(
         val isCheckAuthInProgress: Boolean = false
     )
 
-    data class Effects(
-        val launchSignInScreen: Unit? = null,
-    )
 }
