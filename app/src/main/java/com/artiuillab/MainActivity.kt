@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import com.artiuillab.android.AndroidExceptionHandler
 import com.artiuillab.essentials.logger.Logger
 import com.artiuillab.features.presentation.InitScreen
+import com.artiuillab.navigation.AppNavHost
 import com.artiuillab.ui.theme.TierYourLifeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -28,16 +29,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TierYourLifeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    App(Modifier.fillMaxSize().padding(innerPadding))
-                    exceptionHandler.ErrorDialog()
-                }
+                AppNavHost(Modifier.fillMaxSize())
+                exceptionHandler.ErrorDialog()
+
             }
         }
     }
-}
-
-@Composable
-fun App(modifier: Modifier) {
-    InitScreen()
 }

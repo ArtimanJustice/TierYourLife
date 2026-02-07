@@ -29,6 +29,9 @@ class InitViewModel @Inject constructor(
 
     private val vmStateFlow = MutableStateFlow(ViewModelState())
 
+    private val _effectsFlow = MutableStateFlow(Effects())
+    val effectsFlow: StateFlow<Effects> = _effectsFlow
+
     val stateFlow: StateFlow<Container<State>> = combine(
         getKeyFeatureUseCase.invoke(),
         vmStateFlow,
@@ -46,7 +49,7 @@ class InitViewModel @Inject constructor(
                 if (isAuthorized) {
                     // todo: launch main screen
                 } else {
-                    // todo: launch sign-in screen
+                    _effectsFlow.update { it.copy(launchSignInScreen = Unit) }
                 }
             } catch (e: Exception) {
                 ensureActive()
@@ -54,6 +57,10 @@ class InitViewModel @Inject constructor(
                 exceptionHandler.handleException(e)
             }
         }
+    }
+
+    fun onLaunchSignInScreen() {
+        _effectsFlow.update { it.copy(launchSignInScreen = null) }
     }
 
     private fun showProgress() {
@@ -71,5 +78,9 @@ class InitViewModel @Inject constructor(
 
     private data class ViewModelState(
         val isCheckAuthInProgress: Boolean = false
+    )
+
+    data class Effects(
+        val launchSignInScreen: Unit? = null,
     )
 }

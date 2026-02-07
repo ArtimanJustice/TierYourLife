@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -15,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.artiuillab.features.init.domain.KeyFeature
 import com.artiuillab.features.init.presentation.R
 import com.artiuillab.features.presentation.InitViewModel.State
@@ -25,9 +27,20 @@ import com.elveum.container.Container
 
 
 @Composable
-fun InitScreen() {
+fun InitScreen(
+    onLaunchSignInScreen: () -> Unit,
+) {
     val viewModel: InitViewModel = hiltViewModel()
     val container: Container<State> by viewModel.stateFlow.collectAsState()
+    val effects by viewModel.effectsFlow.collectAsStateWithLifecycle()
+
+    LaunchedEffect(effects.launchSignInScreen) {
+        effects.launchSignInScreen?.let {
+            onLaunchSignInScreen()
+            viewModel.onLaunchSignInScreen()
+        }
+    }
+
     ContainerView(
         container = container,
         modifier = Modifier.fillMaxSize(),

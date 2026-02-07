@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":core:theme")
-
-
 pluginManagement {
     includeBuild("build-logic")
     repositories {
@@ -30,5 +27,9 @@ rootProject.name = "TierYourLife"
 include(":app")
 include(":features:init:presentation")
 include(":features:init:domain")
+include(":features:signin:presentation")
+include(":features:signin:domain")
 include(":core:android")
 include(":core:essentials")
+include(":navigation")
+include(":core:theme")
