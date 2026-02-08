@@ -93,7 +93,5 @@ class ExtendedNavStoreImpl(
         fun ScreenContent() {
             content()
         }
-
     }
-
 }

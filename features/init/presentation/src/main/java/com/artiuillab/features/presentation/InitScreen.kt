@@ -25,7 +25,6 @@ import com.elveum.container.Container
 import com.artiuillab.navigation.dsl.ScreenScope
 import com.artiuillab.navigation.dsl.ScreenToolbar
 
-
 fun ScreenScope.initScreen() {
     toolbar = ScreenToolbar.Hidden
     content {
