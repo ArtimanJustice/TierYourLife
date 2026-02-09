@@ -14,10 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.artiuillab.features.signin.SignInViewModel.State
-import com.artiuillab.theme.components.ContainerView
-import com.elveum.container.Container
 import com.artiuillab.navigation.dsl.ScreenScope
 import com.artiuillab.navigation.dsl.ScreenToolbar
+import com.artiuillab.theme.components.ContainerView
+import com.elveum.container.Container
 
 fun ScreenScope.signInScreen() {
     toolbar = ScreenToolbar.Default(

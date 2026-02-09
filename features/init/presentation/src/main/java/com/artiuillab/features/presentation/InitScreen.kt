@@ -18,12 +18,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.artiuillab.features.init.domain.KeyFeature
 import com.artiuillab.features.init.presentation.R
 import com.artiuillab.features.presentation.InitViewModel.State
+import com.artiuillab.navigation.dsl.ScreenScope
+import com.artiuillab.navigation.dsl.ScreenToolbar
 import com.artiuillab.theme.Dimens
 import com.artiuillab.theme.components.ContainerView
 import com.artiuillab.theme.components.ProgressButton
 import com.elveum.container.Container
-import com.artiuillab.navigation.dsl.ScreenScope
-import com.artiuillab.navigation.dsl.ScreenToolbar
 
 fun ScreenScope.initScreen() {
     toolbar = ScreenToolbar.Hidden
